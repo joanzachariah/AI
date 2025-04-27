@@ -1,3 +1,4 @@
+VACUUM CLEANER
 def print_rooms(rooms, vacuum_location):
     for i, status in enumerate(rooms):
         tag = " (V)" if i == vacuum_location else ""
@@ -39,3 +40,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
