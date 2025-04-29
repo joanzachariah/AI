@@ -309,14 +309,14 @@ path, g, h, f = a_star_search(initial, goal)
 print_solution(path, initial, g, h, f) if path else print("No solution found.")
 INPUT
 Enter the Initial State :
+Enter row 1 : 2 8 3
+Enter row 2 : 1 6 4
+Enter row 3 : 7 0 5
+
+Enter the Goal State :
 Enter row 1 : 1 2 3
 Enter row 2 : 8 0 4
 Enter row 3 : 7 6 5
-Enter the Goal State :
-Enter row 1 : 2 8 1
-Enter row 2 : 0 4 3
-Enter row 3 : 7 6 5
-
 
 
 
