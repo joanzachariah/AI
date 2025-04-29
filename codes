@@ -135,6 +135,116 @@ if __name__ == "__main__":
     main()
 
 
+OR
+
+
+def dfs(graph, start, goal=None):
+    visited = []
+    stack = [start]
+    traversal = []
+
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.append(node)
+            traversal.append(node)
+            print(f"DFS - Current Node: {node}, Closed Nodes: {visited}")
+
+            if goal and node == goal:
+                print(f"DFS - Goal node {goal} found!")
+                break
+
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+    print(f"DFS - Complete Traversal: {traversal}")
+    return traversal
+
+
+def bfs(graph, start, goal=None):
+    visited = []
+    queue = [start]
+    traversal = []
+
+    while queue:
+        node = queue.pop(0)
+        if node not in visited:
+            visited.append(node)
+            traversal.append(node)
+            print(f"BFS - Current Node: {node}, Closed Nodes: {visited}")
+
+            if goal and node == goal:
+                print(f"BFS - Goal node {goal} found!")
+                break
+
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+    print(f"BFS - Complete Traversal: {traversal}")
+    return traversal
+
+
+def input_graph():
+    graph = {}
+    num_nodes = int(input("Enter the number of nodes: "))
+    for i in range(num_nodes):
+        node = input("Enter node: ").strip()
+        neighbors = input(f"Enter neighbors for {node}, separated by spaces: ").strip().split()
+        neighbors = [neighbor.strip() for neighbor in neighbors]
+        graph[node] = neighbors
+    return graph
+
+
+def get_start_node():
+    start = input("Enter the starting node: ")
+    return start
+
+
+def get_goal_node():
+    has_goal = input("Do you want to search for a goal node? (y/n): ").lower().strip()
+    if has_goal == 'y' or has_goal == 'yes':
+        goal = input("Enter the goal node: ")
+        return goal
+    return None
+
+
+def main():
+    graph = input_graph()
+    start_node = get_start_node()
+    goal_node = get_goal_node()
+
+    print("\nDFS Traversal:")
+    dfs(graph, start_node, goal_node)
+
+    print("\nBFS Traversal:")
+    bfs(graph, start_node, goal_node)
+
+
+if __name__ == "__main__":
+    main()
+
+INPUT:
+Enter the number of nodes: 7
+Enter node: A
+Enter neighbors for A, separated by spaces: B D E
+Enter node: B
+Enter neighbors for B, separated by spaces: A C E
+Enter node: C
+Enter neighbors for C, separated by spaces: B E F G
+Enter node: D
+Enter neighbors for D, separated by spaces: A E
+Enter node: E
+Enter neighbors for E, separated by spaces: A B C D F
+Enter node: F
+Enter neighbors for F, separated by spaces: C E G
+Enter node: G
+Enter neighbors for G, separated by spaces: C F
+Enter the starting node: A
+Do you want to search for a goal node? (y/n): Y
+Enter the goal node: G
+
 
 
 
@@ -197,6 +307,15 @@ goal = read_state("\nEnter the Goal State :")
 
 path, g, h, f = a_star_search(initial, goal)
 print_solution(path, initial, g, h, f) if path else print("No solution found.")
+INPUT
+Enter the Initial State :
+Enter row 1 : 1 2 3
+Enter row 2 : 8 0 4
+Enter row 3 : 7 6 5
+Enter the Goal State :
+Enter row 1 : 2 8 1
+Enter row 2 : 0 4 3
+Enter row 3 : 7 6 5
 
 
 
@@ -261,6 +380,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 
